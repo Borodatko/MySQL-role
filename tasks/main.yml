@@ -1,5 +1,11 @@
 ---
-# tasks file for mysql
+
+- name: Check OS
+  assert:
+    that:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution_major_version'] == "7"
+    fail_msg: Host {{ ansible_hostname }} does not meet minimal reqs
 
 - include_tasks: yum.yml
   tags: [always]

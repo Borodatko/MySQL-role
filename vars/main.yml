@@ -12,18 +12,18 @@ log_path: "/var/log/mysql"
 user: "mysql"
 replica_user: "replman"
 replica_pass: "qazQAZ"
-replica_host: "10.20.100.152"
-primary_host: "10.20.100.151"
+replica_host: "CHANGEME"
+primary_host: "CHANGEME"
 
 # mysql_wordpress.yml
 db_name: wordpress
 db_username: "wordpress"
 db_password: "wordpress"
-db_host: "10.20.100.153"
+db_host: "CHANGEME"
 
 # mysqld_exporter.yml
 mysqld_exporter_version: "0.14.0"
 mysqld_exporter_archive: "{{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }}.tar.gz"
 mysqld_exporter_path_tmp: "{{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }}"
 mysql_user: "mysqld_exporter"
-mysql_pass: "1qaz@WSX3edc"
+mysql_pass: "CHANGEME"
