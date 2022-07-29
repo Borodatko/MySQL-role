@@ -41,8 +41,8 @@ Role Variables
 | db_password | database password | string | CHANGEME |
 | db_host | remote ip address | string | CHANGEME |
 | mysqld_exporter_version | mysqld exporter version | string | 0.14.0 |
-| mysqld_exporter_archive | downloaded archive | string |
-| mysqld_exporter_path_tmp | temporary path | string |
+| mysqld_exporter_archive | downloaded archive | string | {{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }}.tar.gz |
+| mysqld_exporter_path_tmp | temporary path | string | {{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }} |
 | mysql_user | mysql user for mysqld exporter | string | CHANGEME |
 | mysql_pass | mysql password for mysqld exporter user | string | CHANGEME |
 
