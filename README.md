@@ -28,7 +28,7 @@ Role Variables
 | node_exporter_path_tmp | temporary path | string | {{ tmp_path }}/node_exporter-{{ node_exporter_version }}.{{ arch }} |
 | systemd_path | systemd unit file path | string | /etc/systemd/system |
 | ***yum.yml*** |
-| md5 | md5 check sum string | string | CHANGEME |
+| md5 | md5 check sum string | string | 62f64deae31dcc2399a0ebe05366498f |
 | repo_url | mysql repository url | string | https://dev.mysql.com/get/mysql80-community-release-el7-6.noarch.rpm |
 | rpm_path | path to repositories directory | string | /tmp/mysql80-community-release-el7-6.noarch.rpm |
 | gpg_url | gpg key url | string | https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 |
