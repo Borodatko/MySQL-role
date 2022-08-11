@@ -1,0 +1,13 @@
+---
+
+- name: Grafana - Create user
+  community.mysql.mysql_user:
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_host: localhost
+    name: "{{ grafana_user }}"
+    password: "{{ grafana_pass }}"
+    host: localhost
+    priv: '*.*:PROCESS,REPLICATION CLIENT,SELECT'
+    state: present
+  tags: mysql

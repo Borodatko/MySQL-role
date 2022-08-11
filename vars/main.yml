@@ -27,3 +27,7 @@ mysqld_exporter_archive: "{{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_vers
 mysqld_exporter_path_tmp: "{{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }}"
 mysql_user: "CHANGEME"
 mysql_pass: "CHANGEME"
+
+# mysql_grafana.yml
+grafana_user: "CHANGEME"
+grafana_pass: "CHANGEME"

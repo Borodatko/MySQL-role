@@ -32,4 +32,11 @@
   tags: [always]
 
 - include_tasks: mysqld_exporter.yml
+  when:
+    inventory_hostname == "db01"
+  tags: [always]
+
+- include_tasks: mysql_grafana.yml
+  when:
+    inventory_hostname == "db01"
   tags: [always]

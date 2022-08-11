@@ -8,7 +8,6 @@ Requirements
 ------------
 
  - Ansible community.mysql module
- - PyMySQL module
 
 
 Role Variables
@@ -50,6 +49,9 @@ Role Variables
 | mysqld_exporter_path_tmp | temporary path | string | {{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }} |
 | mysql_user | mysql user for mysqld exporter | string | CHANGEME |
 | mysql_pass | mysql password for mysqld exporter user | string | CHANGEME |
+| ***mysql_grafana.yml***|
+| grafana_user | database user for grafana wordpress stats | string | CHANGEME |
+| grafana_pass | database user password | string | CHANGEME |
 
 
 Example Playbook
