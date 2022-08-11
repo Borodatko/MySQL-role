@@ -52,6 +52,7 @@ Role Variables
 | ***mysql_grafana.yml***|
 | grafana_user | database user for grafana wordpress stats | string | CHANGEME |
 | grafana_pass | database user password | string | CHANGEME |
+| remote_host | ip address of remote grafana host | string | CHANGEME |
 
 
 Example Playbook

@@ -7,7 +7,7 @@
     login_host: localhost
     name: "{{ grafana_user }}"
     password: "{{ grafana_pass }}"
-    host: localhost
+    host: "{{ remote_host }}"
     priv: '*.*:PROCESS,REPLICATION CLIENT,SELECT'
     state: present
   tags: mysql

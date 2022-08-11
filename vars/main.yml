@@ -31,3 +31,4 @@ mysql_pass: "CHANGEME"
 # mysql_grafana.yml
 grafana_user: "CHANGEME"
 grafana_pass: "CHANGEME"
+remote_host: "CHANGEME"
