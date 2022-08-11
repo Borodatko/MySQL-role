@@ -1,11 +1,21 @@
 ---
 
+- name: Slave - Check my.cnf file
+  become: true
+  ansible.builtin.lineinfile:
+    dest: "{{ cnf_path }}/my.cnf"
+    line: "server-id = 2"
+  check_mode: yes
+  register: config
+  tags: gitlab
+
 - name: Slave - Copy my.cnf on Slave
   become: true
   ansible.builtin.template:
     src: slave_my.cnf.j2
     dest: "{{ cnf_path }}/my.cnf"
     mode: '644'
+  when: config.changed
   notify:
     - Restart MySQL
   tags: mysql
