@@ -1,5 +1,6 @@
 ---
 # handlers file for mysql
+
 - name: Reload daemon
   become: true
   ansible.builtin.systemd:
@@ -43,4 +44,3 @@
   ansible.builtin.systemd:
     name: mysqld_exporter
     state: restarted
-

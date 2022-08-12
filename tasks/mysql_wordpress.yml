@@ -1,4 +1,5 @@
 ---
+
 - name: Wordpress - Create Database wordpress
   community.mysql.mysql_db:
     login_user: root
@@ -20,4 +21,3 @@
       'wordpress.*': 'ALL,GRANT'
     state: present
   tags: mysql
-
