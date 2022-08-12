@@ -25,6 +25,7 @@
   become: true
   command: "{{ script }}"
   register: password
+  tags: mysql
 
 - name: Secure Install - Set root password
   command: 'mysql --user root --password="{{ password.stdout }}" --connect-expired-password --execute="{{ item }}"'

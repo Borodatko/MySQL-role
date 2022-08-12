@@ -7,7 +7,7 @@
     line: "server-id = 1"
   check_mode: yes
   register: config
-  tags: gitlab
+  tags: mysql
 
 - name: Master - Copy my.cnf on Master
   become: true

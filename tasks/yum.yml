@@ -3,6 +3,7 @@
 - name: Yum - Get md5sum
   ansible.builtin.set_fact:
     md5_value: "{{ md5 }}"
+  tags: mysql
 
 - name: Yum - Get MySQL release
   ansible.builtin.get_url:
