@@ -72,7 +72,7 @@ An example of using role:
 - name: MySQL Provisioning
   hosts: mysql
   roles:
-    - Mysql-role
+    - MySQL-role
 ```
 
 

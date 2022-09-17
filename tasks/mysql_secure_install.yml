@@ -1,11 +1,21 @@
 ---
 
+- name: Master - Check my.cnf file
+  become: true
+  ansible.builtin.lineinfile:
+    dest: "{{ cnf_path }}/my.cnf"
+    line: "log_bin = /var/log/mysql/mysql-bin"
+  check_mode: yes
+  register: config
+  tags: mysql
+
 - name: Secure Install - Copy my.cnf
   become: true
   ansible.builtin.template:
     src: my.cnf.j2
     dest: "{{ cnf_path }}/my.cnf"
     mode: '644'
+  when: config.changed
   notify:
     - Start MySQL
   tags: mysql
