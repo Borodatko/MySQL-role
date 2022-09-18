@@ -10,4 +10,6 @@
     host: "{{ remote_host }}"
     priv: '*.*:PROCESS,REPLICATION CLIENT,SELECT'
     state: present
-  tags: mysql
+  tags:
+    - mysql
+    - grafana

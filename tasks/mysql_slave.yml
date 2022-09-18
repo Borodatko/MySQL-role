@@ -7,7 +7,9 @@
     line: "server-id = 2"
   check_mode: yes
   register: config
-  tags: mysql
+  tags:
+    - mysql
+    - slave
 
 - name: Slave - Copy my.cnf on Slave
   become: true
@@ -18,7 +20,9 @@
   when: config.changed
   notify:
     - Restart MySQL
-  tags: mysql
+  tags:
+    - mysql
+    - slave
 
 - name: Flush handlers
   meta: flush_handlers
@@ -30,7 +34,9 @@
     login_host: localhost
     mode: getmaster
   register: master_data
-  tags: mysql
+  tags:
+    - mysql
+    - slave
 
 - block:
     - name: Slave - Config slave
@@ -58,7 +64,9 @@
         master_password: "{{ replica_pass }}"
         master_log_file: "{{ master_data.File }}"
         master_log_pos: "{{ master_data.Position }}"
-  tags: mysql
+  tags:
+    - mysql
+    - slave
 
 - name: Slave - Start slave
   community.mysql.mysql_replication:
@@ -66,4 +74,6 @@
     login_password: "{{ root_password }}"
     login_host: localhost
     mode: startslave
-  tags: mysql
+  tags:
+    - mysql
+    - slave

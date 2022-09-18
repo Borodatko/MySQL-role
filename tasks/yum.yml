@@ -1,9 +1,33 @@
 ---
 
+- name: Yum - Upgrade packages
+  become: true
+  ansible.builtin.yum:
+    name: "*"
+    enablerepo: base,updates,extras
+    state: latest
+    update_cache: yes
+  tags:
+    - mysql
+    - yum
+
+- name: Yum - Install packages
+  become: true
+  ansible.builtin.yum:
+    name:
+      - python36
+    enablerepo: base,updates,extras
+    state: latest
+  tags:
+    - mysql
+    - yum
+
 - name: Yum - Get md5sum
   ansible.builtin.set_fact:
     md5_value: "{{ md5 }}"
-  tags: mysql
+  tags:
+    - mysql
+    - yum
 
 - name: Yum - Get MySQL release
   ansible.builtin.get_url:
@@ -11,21 +35,27 @@
     dest: "{{ rpm_path }}"
     checksum: "md5: {{ md5_value }}"
     force: true
-  tags: mysql
+  tags:
+    - mysql
+    - yum
 
 - name: Yum - Import gpg-key
   become: true
   ansible.builtin.rpm_key:
     state: present
     key: "{{ gpg_url }}"
-  tags: mysql
+  tags:
+    - mysql
+    - yum
 
-- name: Yum - Install package
+- name: Yum - Install MySQL Repo
   become: true
   ansible.builtin.yum:
     name: "{{ rpm_path }}"
     state: present
-  tags: mysql
+  tags:
+    - mysql
+    - yum
 
 - name: Yum - Install MySQL server
   become: true
@@ -34,4 +64,6 @@
       - mysql-server
       - MySQL-python
     state: latest
-  tags: mysql
+  tags:
+    - mysql
+    - yum

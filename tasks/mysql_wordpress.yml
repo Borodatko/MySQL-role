@@ -7,7 +7,9 @@
     login_host: localhost
     name: "{{ db_name }}"
     state: present
-  tags: mysql
+  tags:
+    - mysql
+    - wordpress
 
 - name: Wordpress - Create User wordpress
   community.mysql.mysql_user:
@@ -20,4 +22,6 @@
     priv:
       'wordpress.*': 'ALL,GRANT'
     state: present
-  tags: mysql
+  tags:
+    - mysql
+    - wordpress
