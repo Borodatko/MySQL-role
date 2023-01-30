@@ -1,9 +1,9 @@
 ---
-
 - name: MysqldExporter - Get release
   ansible.builtin.get_url:
-    url: "https://github.com/prometheus/mysqld_exporter/releases/download/v{{ mysqld_exporter_version }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }}.tar.gz"
+    url: "https://github.com/prometheus/mysqld_exporter/releases/download/v{{ mysqld_export_ver }}/mysqld_exporter-{{ mysqld_export_ver }}.{{ arch }}.tar.gz"
     dest: "{{ mysqld_exporter_archive }}"
+    mode: '0644'
   tags:
     - mysql
     - exporter
@@ -12,7 +12,7 @@
   ansible.builtin.unarchive:
     src: "{{ mysqld_exporter_archive }}"
     dest: "{{ tmp_path }}"
-    remote_src: yes
+    remote_src: true
   tags:
     - mysql
     - exporter
@@ -22,7 +22,7 @@
   ansible.builtin.copy:
     src: "{{ mysqld_exporter_path_tmp }}/{{ item }}"
     dest: "{{ bin_path }}"
-    remote_src: yes
+    remote_src: true
     mode: '0755'
   with_items:
     - mysqld_exporter
@@ -68,7 +68,7 @@
     - exporter
 
 - name: Flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Remove Artifacts
   ansible.builtin.file:
@@ -80,3 +80,4 @@
   tags:
     - mysql
     - exporter
+...

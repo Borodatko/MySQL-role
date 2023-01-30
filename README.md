@@ -7,15 +7,16 @@ Ansible role for MySQL cluster installation & configuration.
 Requirements
 ------------
 
- - Ansible community.mysql module
-
-Name of master in inventory file:
-
-inventory_hostname == "db01"
-
-Name of slave in inventory file:
-
-inventory_hostname == "db02"
+ - RHEL7-based OS;
+ - Ansible community.mysql module;
+ - Name of master in inventory file:
+   ```
+   inventory_hostname == "db01"
+   ```
+ - Name of slave in inventory file:
+   ```
+   inventory_hostname == "db02"
+   ```
 
 
 Role Variables
@@ -30,7 +31,7 @@ Role Variables
 | bin_path | path to binary  | string | /usr/local/bin |
 | script | script gets temporary root password | string | {{ tmp_path }}/script.sh |
 | root_password | mysql root password | string | CHANGEME |
-| node_exporter_version | prometheus node exporter version | string | 1.3.1 |
+| exporter_version | prometheus node exporter version | string | 1.3.1 |
 | node_exporter_archive | downloaded archive | string | {{ tmp_path }}/node_exporter-{{ node_exporter_version }}.{{ arch }}.tar.gz |
 | node_exporter_path_tmp | temporary path | string | {{ tmp_path }}/node_exporter-{{ node_exporter_version }}.{{ arch }} |
 | systemd_path | systemd unit file path | string | /etc/systemd/system |
@@ -52,7 +53,7 @@ Role Variables
 | db_password | wordpress database password | string | CHANGEME |
 | db_host | webserver ip address | string | CHANGEME |
 | ***vars/mysqld_exporter.yml*** |
-| mysqld_exporter_version | mysqld exporter version | string | 0.14.0 |
+| mysqld_export_ver | mysqld exporter version | string | 0.14.0 |
 | mysqld_exporter_archive | downloaded archive | string | {{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }}.tar.gz |
 | mysqld_exporter_path_tmp | temporary path | string | {{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }} |
 | mysql_user | mysql user for mysqld exporter | string | CHANGEME |

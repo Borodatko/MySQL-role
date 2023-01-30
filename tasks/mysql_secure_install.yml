@@ -1,11 +1,10 @@
 ---
-
 - name: Secure Install - Check my.cnf file
   become: true
   ansible.builtin.lineinfile:
     dest: "{{ cnf_path }}/my.cnf"
     line: "log_bin = /var/log/mysql/mysql-bin"
-  check_mode: yes
+  check_mode: true
   register: config
   tags:
     - mysql
@@ -25,7 +24,7 @@
     - secure
 
 - name: Flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Secure Install - Copy shell-script
   become: true
@@ -39,14 +38,14 @@
 
 - name: Secure Install - Get temporary root password
   become: true
-  command: "{{ script }}"
+  ansible.builtin.command: "{{ script }}"
   register: password
   tags:
     - mysql
     - secure
 
 - name: Secure Install - Set root password
-  command: 'mysql --user root --password="{{ password.stdout }}" --connect-expired-password --execute="{{ item }}"'
+  ansible.builtin.command: 'mysql --user root --password="{{ password.stdout }}" --connect-expired-password --execute="{{ item }}"'
   with_items:
     - ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ root_password }}';
     - ALTER USER 'root'@'127.0.0.1' IDENTIFIED BY '{{ root_password }}';
@@ -124,3 +123,4 @@
   tags:
     - mysql
     - secure
+...

@@ -1,5 +1,4 @@
 ---
-
 - name: Grafana - Create user
   community.mysql.mysql_user:
     login_user: root
@@ -13,3 +12,4 @@
   tags:
     - mysql
     - grafana
+...

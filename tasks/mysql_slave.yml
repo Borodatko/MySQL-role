@@ -1,11 +1,10 @@
 ---
-
 - name: Slave - Check my.cnf file
   become: true
   ansible.builtin.lineinfile:
     dest: "{{ cnf_path }}/my.cnf"
     line: "server-id = 2"
-  check_mode: yes
+  check_mode: true
   register: config
   tags:
     - mysql
@@ -16,7 +15,7 @@
   ansible.builtin.template:
     src: slave_my.cnf.j2
     dest: "{{ cnf_path }}/my.cnf"
-    mode: '644'
+    mode: '0644'
   when: config.changed
   notify:
     - Restart MySQL
@@ -25,7 +24,7 @@
     - slave
 
 - name: Flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Slave - Get data from master file and position
   community.mysql.mysql_replication:
@@ -38,7 +37,9 @@
     - mysql
     - slave
 
-- block:
+- name: Slave configuration
+  block:
+
     - name: Slave - Config slave
       community.mysql.mysql_replication:
         login_user: root
@@ -52,7 +53,12 @@
         master_log_pos: "{{ master_data.Position }}"
       register: result
       failed_when: result.msg == -1
+      tags:
+        - mysql
+        - slave
+
   rescue:
+
     - name: Slave - Config slave
       community.mysql.mysql_replication:
         login_user: root
@@ -64,9 +70,9 @@
         master_password: "{{ replica_pass }}"
         master_log_file: "{{ master_data.File }}"
         master_log_pos: "{{ master_data.Position }}"
-  tags:
-    - mysql
-    - slave
+      tags:
+        - mysql
+        - slave
 
 - name: Slave - Start slave
   community.mysql.mysql_replication:
@@ -77,3 +83,4 @@
   tags:
     - mysql
     - slave
+...

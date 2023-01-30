@@ -22,7 +22,7 @@ db_password: "CHANGEME"
 db_host: "CHANGEME"
 
 # mysqld_exporter.yml
-mysqld_exporter_version: "0.14.0"
+mysqld_export_ver: "0.14.0"
 mysqld_exporter_archive: "{{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }}.tar.gz"
 mysqld_exporter_path_tmp: "{{ tmp_path }}/mysqld_exporter-{{ mysqld_exporter_version }}.{{ arch }}"
 mysql_user: "CHANGEME"
@@ -32,3 +32,4 @@ mysql_pass: "CHANGEME"
 grafana_user: "CHANGEME"
 grafana_pass: "CHANGEME"
 remote_host: "CHANGEME"
+...

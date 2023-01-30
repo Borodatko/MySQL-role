@@ -1,13 +1,12 @@
 ---
-
 - name: Master - Check my.cnf file
   become: true
   ansible.builtin.lineinfile:
     dest: "{{ cnf_path }}/my.cnf"
     line: "server-id = 1"
-  check_mode: yes
+  check_mode: true
   register: config
-  tags: 
+  tags:
     - mysql
     - master
 
@@ -25,7 +24,7 @@
     - master
 
 - name: Flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Master - Create replica user
   community.mysql.mysql_user:
@@ -40,3 +39,4 @@
   tags:
     - mysql
     - master
+...
