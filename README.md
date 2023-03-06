@@ -73,7 +73,6 @@ Supported tags in tasks:
  - **yum**
  - **mysql**
  - **secure**
- - **letsenrypt**
  - **master**
  - **slave**
  - **wordpress**
